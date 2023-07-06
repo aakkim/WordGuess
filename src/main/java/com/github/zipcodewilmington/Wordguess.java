@@ -19,7 +19,7 @@ public class Wordguess {
     char play;
     boolean isWordGuessed = false;
     boolean guessAgain = true;
-    int attempts = 5;
+    int attempts = 3;
 
     public static void main(String[] args) {
         Wordguess game = new Wordguess();
@@ -43,8 +43,10 @@ public class Wordguess {
 
             while (!isWordGuessed) {
 
-                getInput();
+                System.out.println(attempts + " attempts remaining");
+                System.out.println(secretWordArray);
 
+                getInput();
 
                 for (int i = 0; i < secretWord.length(); i++) {
                     if (secretWord.charAt(i) == guess) {
@@ -54,21 +56,15 @@ public class Wordguess {
                 attempts--;
 
 
-                System.out.println(attempts + " attempts remaining");
-                System.out.println(secretWordArray);
-
-//                System.out.println("Secret word: " + secretWord);
-
-
                 if (secretWord.equals(String.valueOf(secretWordArray))) {
                     isWordGuessed = true;
                     System.out.println("You guessed the word!");
-                }
-
-                if (attempts == 0) {
+                } else if (attempts == 0) {
                     System.out.println("Failed to guess the word :( ");
                     break;
                 }
+
+
             }
 
             playAgain();
@@ -91,7 +87,6 @@ public class Wordguess {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter a letter: ");
         guess = in.next().toUpperCase().charAt(0);
-//        System.out.println("You entered " + guess);
     }
 
 
@@ -100,7 +95,7 @@ public class Wordguess {
         System.out.println("Would you like to play again? Enter Y (yes) or N (no)");
         play = in.next().toUpperCase().charAt(0);
         if(play=='Y') {
-            attempts = 4;
+            attempts = 3;
             guessAgain = true;
             isWordGuessed = false;
         } else if(play=='N') {
