@@ -14,12 +14,12 @@ import java.util.Random;
 public class Wordguess {
 
     String[] words = {"CAT", "PAN", "SIT", "HAM"};
-
+    String secretWord;
     char guess;
     char play;
     boolean isWordGuessed = false;
     boolean guessAgain = true;
-    int attempts = 4;
+    int attempts = 5;
 
     public static void main(String[] args) {
         Wordguess game = new Wordguess();
@@ -34,8 +34,7 @@ public class Wordguess {
         while(guessAgain) {
 
 
-            Random random = new Random();
-            String secretWord = words[random.nextInt(words.length - 1)];
+            randomWord();
 
             char[] secretWordArray = new char[secretWord.length()];
             for (int i = 0; i < secretWordArray.length; i++) {
@@ -58,7 +57,7 @@ public class Wordguess {
                 System.out.println(attempts + " attempts remaining");
                 System.out.println(secretWordArray);
 
-                System.out.println("Secret word: " + secretWord);
+//                System.out.println("Secret word: " + secretWord);
 
 
                 if (secretWord.equals(String.valueOf(secretWordArray))) {
@@ -79,6 +78,12 @@ public class Wordguess {
 
     public void announceGame() {
         System.out.println("Let's play Hangman! See if you can guess the correct word. ");
+    }
+
+    public String randomWord() {
+        Random random = new Random();
+        secretWord = words[random.nextInt(words.length - 1)];
+        return secretWord;
     }
 
 
